@@ -1,7 +1,6 @@
 .footer a{
   color:var(--muted);
   text-decoration:none;
-  transition:color .2s ease;
 }
 
 .footer a:hover{
@@ -9,30 +8,7 @@
 }
 
 .cta p{
-  max-width:700px;
+  max-width:720px;
   margin-left:auto;
   margin-right:auto;
-}
-
-@media (max-width:600px){
-  .section{
-    padding:4rem 1.25rem;
-  }
-
-  .hero{
-    padding-left:1.25rem;
-    padding-right:1.25rem;
-  }
-
-  .footer{
-    padding:2.5rem 1.25rem;
-  }
-
-  .hero-actions{
-    flex-direction:column;
-  }
-
-  .btn{
-    width:100%;
-  }
 }
