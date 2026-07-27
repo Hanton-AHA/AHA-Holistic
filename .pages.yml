@@ -1,0 +1,123 @@
+media:
+  - name: images
+    label: Bilder
+    input: assets/uploads
+    output: /assets/uploads
+    extensions: [jpg, jpeg, png, webp, gif]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: andrum
+    label: Andrum – blogginlägg
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{title}.md"
+    view:
+      primary: title
+      fields: [title, date, published]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Rubrik
+        type: string
+        required: true
+      - name: date
+        label: Publiceringsdatum
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: excerpt
+        label: Kort introduktion
+        type: text
+        required: true
+        description: Visas på översiktssidan i Andrum.
+      - name: cover
+        label: Omslagsbild
+        type: image
+        required: false
+        options:
+          media: images
+          path: blogg
+      - name: published
+        label: Publicerad
+        type: boolean
+        default: true
+      - name: body
+        label: Innehåll
+        type: rich-text
+        required: true
+        options:
+          media: images
+
+  - name: ovningar
+    label: Övningar & YouTube
+    type: collection
+    path: _ovningar
+    format: yaml-frontmatter
+    filename: "{title}.md"
+    view:
+      primary: title
+      fields: [title, category, published]
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Rubrik
+        type: string
+        required: true
+      - name: category
+        label: Kategori
+        type: select
+        required: true
+        options:
+          values:
+            - Andning
+            - Yoga
+            - Rörelse
+            - Meditation
+            - Återhämtning
+            - Inspiration
+      - name: duration
+        label: Längd
+        type: string
+        required: false
+        description: "Exempel: 5 min."
+      - name: youtube_url
+        label: YouTube-länk
+        type: string
+        required: false
+        description: Klistra in hela länken från YouTube.
+      - name: cover
+        label: Omslagsbild
+        type: image
+        required: false
+        options:
+          media: images
+          path: ovningar
+      - name: excerpt
+        label: Kort beskrivning
+        type: text
+        required: true
+      - name: order
+        label: Ordning
+        type: number
+        required: true
+        default: 10
+      - name: published
+        label: Publicerad
+        type: boolean
+        default: true
+      - name: body
+        label: Beskrivning och instruktioner
+        type: rich-text
+        required: false
+        options:
+          media: images
