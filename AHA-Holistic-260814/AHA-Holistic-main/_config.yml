@@ -1,0 +1,36 @@
+title: AHA HOLISTIC
+description: Andas • Känn • Återknyt
+url: https://www.ahaholistic.se
+baseurl: ""
+lang: sv-SE
+timezone: Europe/Stockholm
+permalink: /andrum/:title/
+
+collections:
+  ovningar:
+    output: true
+    permalink: /ovningar/:name/
+  evenemang:
+    output: true
+    permalink: /evenemang/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: ovningar
+    values:
+      layout: ovning
+  - scope:
+      path: ""
+      type: evenemang
+    values:
+      layout: event
+
+exclude:
+  - README.md
+  - CMS-INSTRUKTIONER.md

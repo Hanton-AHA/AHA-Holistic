@@ -1,0 +1,82 @@
+---
+layout: null
+title: Kommande evenemang
+permalink: /evenemang.html
+---
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kommande cirklar, breathwork, workshops och andra upplevelser med AHA Holistic.">
+  <title>Kommande evenemang | AHA HOLISTIC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+</head>
+<body>
+<header class="page-hero">
+  {% include cms-nav.html %}
+  <div class="page-hero-content">
+    <p class="eyebrow">KOMMANDE EVENEMANG</p>
+    <h1>Möt oss i andetaget</h1>
+    <p class="lead">Här hittar du våra kommande cirklar, breathwork-sessioner, workshops och andra upplevelser.</p>
+  </div>
+</header>
+<main>
+<section class="section">
+  <div class="content-wide">
+    {% assign today = site.time | date: "%Y-%m-%d" %}
+    {% assign visible_events = site.evenemang | where_exp: 'event', 'event.published != false' | sort: 'event_date' %}
+    {% assign upcoming_count = 0 %}
+    <div class="event-grid">
+      {% for event in visible_events %}
+        {% assign event_day = event.event_date | date: "%Y-%m-%d" %}
+        {% if event_day >= today %}
+          {% assign upcoming_count = upcoming_count | plus: 1 %}
+          <article class="event-card">
+            {% if event.cover %}<a class="event-card-media" href="{{ event.url | relative_url }}" style="background-image:linear-gradient(rgba(11,20,18,.12),rgba(11,20,18,.64)),url('{{ event.cover | relative_url }}')" aria-label="Läs mer om {{ event.title | escape }}"></a>{% endif %}
+            <div class="event-card-content">
+              <p class="tag">{{ event.event_date | date: "%d.%m.%Y" }}{% if event.start_time %} • {{ event.start_time }}{% if event.end_time %}–{{ event.end_time }}{% endif %}{% endif %}</p>
+              <h2><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h2>
+              {% if event.subtitle %}<p class="event-subtitle">{{ event.subtitle }}</p>{% endif %}
+              {% if event.location %}<p class="event-location">{{ event.location }}{% if event.address %}<br><span>{{ event.address }}</span>{% endif %}</p>{% endif %}
+              {% if event.excerpt %}<p>{{ event.excerpt }}</p>{% endif %}
+              <div class="event-card-bottom">
+                {% if event.price %}<strong class="event-price">{{ event.price }}</strong>{% endif %}
+                <a href="{{ event.url | relative_url }}" class="btn btn-secondary">Läs mer</a>
+              </div>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if upcoming_count == 0 %}
+      <div class="notice center"><strong>Nya datum kommer snart.</strong><br>Följ gärna AHA Holistic för kommande cirklar och upplevelser.</div>
+    {% endif %}
+  </div>
+</section>
+
+{% assign past_count = 0 %}
+{% for event in visible_events %}{% assign event_day = event.event_date | date: "%Y-%m-%d" %}{% if event_day < today %}{% assign past_count = past_count | plus: 1 %}{% endif %}{% endfor %}
+{% if past_count > 0 %}
+<section class="section section-dark">
+  <div class="content-wide">
+    <p class="section-label">TIDIGARE</p>
+    <h2>Tidigare evenemang</h2>
+    <div class="past-event-list">
+      {% for event in visible_events reversed %}
+        {% assign event_day = event.event_date | date: "%Y-%m-%d" %}
+        {% if event_day < today %}
+          <a href="{{ event.url | relative_url }}"><span>{{ event.event_date | date: "%d.%m.%Y" }}</span><strong>{{ event.title }}</strong></a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+</main>
+{% include cms-footer.html %}
+</body>
+</html>
