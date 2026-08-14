@@ -23,3 +23,7 @@ Fyll i rubrik, kategori, l채ngd, kort beskrivning och klistra in hela YouTube-l�
 ## Utkast
 
 St채ng av **Publicerad** innan du sparar. Inneh책llet finns kvar i Pages CMS men visas inte i listorna p책 hemsidan.
+
+## Kommande evenemang
+
+I Pages CMS finns nu samlingen **Kommande evenemang**. Skapa ett nytt event d채r och fyll i datum, tid, plats, pris, intro, full beskrivning och eventuell bild. N채r **Publicerad** 채r aktiverad visas eventet automatiskt p책 `evenemang.html`. Efter eventdatumet flyttas det automatiskt till **Tidigare evenemang**.

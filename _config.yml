@@ -10,6 +10,9 @@ collections:
   ovningar:
     output: true
     permalink: /ovningar/:name/
+  evenemang:
+    output: true
+    permalink: /evenemang/:name/
 
 defaults:
   - scope:
@@ -22,6 +25,11 @@ defaults:
       type: ovningar
     values:
       layout: ovning
+  - scope:
+      path: ""
+      type: evenemang
+    values:
+      layout: event
 
 exclude:
   - README.md
