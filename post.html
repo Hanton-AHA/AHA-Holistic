@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ page.excerpt | default: page.title | strip_html | escape }}">
+  <title>{{ page.title }} | AHA HOLISTIC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+</head>
+<body>
+<header class="page-hero{% if page.cover %} page-hero-has-cover{% endif %}"{% if page.cover %} style="background-image:linear-gradient(rgba(11,20,18,.58),rgba(11,20,18,.94)),url('{{ page.cover | relative_url }}')"{% endif %}>
+  {% include cms-nav.html %}
+  <div class="page-hero-content">
+    <p class="eyebrow">ANDRUM</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.excerpt %}<p class="lead">{{ page.excerpt }}</p>{% endif %}
+  </div>
+</header>
+<main>
+  <article class="section content-narrow prose article-body">
+    <p class="post-meta">{{ page.date | date: "%d.%m.%Y" }}</p>
+    {{ content }}
+    <p><a href="{{ '/andrum.html' | relative_url }}">← Tillbaka till Andrum</a></p>
+  </article>
+</main>
+{% include cms-footer.html %}
+</body>
+</html>

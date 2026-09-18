@@ -38,7 +38,7 @@ permalink: /evenemang.html
           <article class="event-card">
             {% if event.cover %}<a class="event-card-media" href="{{ event.url | relative_url }}" style="background-image:linear-gradient(rgba(11,20,18,.12),rgba(11,20,18,.64)),url('{{ event.cover | relative_url }}')" aria-label="Läs mer om {{ event.title | escape }}"></a>{% endif %}
             <div class="event-card-content">
-              <p class="tag">{{ event.event_date | date: "%d.%m.%Y" }}{% if event.start_time %} • {{ event.start_time }}{% if event.end_time %}–{{ event.end_time }}{% endif %}{% endif %}</p>
+              <p class="tag">{% if event.weekday %}{{ event.weekday }} {{ event.event_date | date: "%d/%m" }}{% else %}{{ event.event_date | date: "%d.%m.%Y" }}{% endif %}{% if event.start_time %} • {{ event.start_time }}{% if event.end_time %}–{{ event.end_time }}{% endif %}{% endif %}</p>
               <h2><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h2>
               {% if event.subtitle %}<p class="event-subtitle">{{ event.subtitle }}</p>{% endif %}
               {% if event.location %}<p class="event-location">{{ event.location }}{% if event.address %}<br><span>{{ event.address }}</span>{% endif %}</p>{% endif %}

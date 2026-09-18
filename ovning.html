@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ page.excerpt | default: page.title | strip_html | escape }}">
+  <title>{{ page.title }} | AHA HOLISTIC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+</head>
+<body>
+<header class="page-hero{% if page.cover %} page-hero-has-cover{% endif %}"{% if page.cover %} style="background-image:linear-gradient(rgba(11,20,18,.58),rgba(11,20,18,.94)),url('{{ page.cover | relative_url }}')"{% endif %}>
+  {% include cms-nav.html %}
+  <div class="page-hero-content">
+    <p class="eyebrow">{{ page.category | default: 'ÖVNING' }}{% if page.duration %} • {{ page.duration }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.excerpt %}<p class="lead">{{ page.excerpt }}</p>{% endif %}
+  </div>
+</header>
+<main>
+  <article class="section content-narrow prose article-body">
+    {% if page.youtube_url %}
+      {% assign youtube_id = page.youtube_url %}
+      {% if youtube_id contains 'youtu.be/' %}
+        {% assign youtube_id = youtube_id | split: 'youtu.be/' | last | split: '?' | first %}
+      {% elsif youtube_id contains 'v=' %}
+        {% assign youtube_id = youtube_id | split: 'v=' | last | split: '&' | first %}
+      {% elsif youtube_id contains '/embed/' %}
+        {% assign youtube_id = youtube_id | split: '/embed/' | last | split: '?' | first %}
+      {% endif %}
+      <div class="youtube-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/{{ youtube_id }}" title="{{ page.title | escape }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    {% endif %}
+    {{ content }}
+    <div class="notice"><strong>Viktigt:</strong> Lyssna alltid på kroppen. Avbryt om du blir yr, får smärta eller känner starkt obehag.</div>
+    <p><a href="{{ '/ovningar.html' | relative_url }}">← Tillbaka till alla övningar</a></p>
+  </article>
+</main>
+{% include cms-footer.html %}
+</body>
+</html>
