@@ -1,6 +1,7 @@
 ---
 title: "Gryning – från rötter till expansion"
 subtitle: "Något nytt håller på att ta form"
+cover: "/assets/uploads/gryning-fran-rotter-till-expansion.webp"
 event_date: 2026-09-19
 start_time: "12.00"
 end_time: "15.00"
