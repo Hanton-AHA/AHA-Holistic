@@ -22,7 +22,7 @@
 <main>
   <article class="section content-narrow prose article-body event-detail">
     <div class="event-facts">
-      {% if page.event_date %}<div><span>Datum</span><strong>{{ page.event_date | date: "%d.%m.%Y" }}</strong></div>{% endif %}
+      {% if page.event_date %}<div><span>Datum</span><strong>{% if page.weekday %}{{ page.weekday }} {{ page.event_date | date: "%d/%m" }}{% else %}{{ page.event_date | date: "%d.%m.%Y" }}{% endif %}</strong></div>{% endif %}
       {% if page.start_time %}<div><span>Tid</span><strong>{{ page.start_time }}{% if page.end_time %}–{{ page.end_time }}{% endif %}</strong></div>{% endif %}
       {% if page.location %}<div><span>Plats</span><strong>{{ page.location }}</strong>{% if page.address %}<small>{{ page.address }}</small>{% endif %}</div>{% endif %}
       {% if page.price %}<div><span>Pris</span><strong>{{ page.price }}</strong></div>{% endif %}
